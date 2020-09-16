@@ -1,10 +1,9 @@
 import '@testing-library/jest-dom/extend-expect';
 import React from 'react';
-import {render, act, fireEvent} from '@testing-library/react';
+import { render, act, fireEvent } from '@testing-library/react';
 import Game from '../components/game';
-import {INIT_STATE} from '../initialState';
+import { INIT_STATE } from '../initialState';
 
-const cellWidth = INIT_STATE.board.width / INIT_STATE.cols;
 const cellHeight = INIT_STATE.board.height / INIT_STATE.rows;
 
 beforeAll(() => {
@@ -15,31 +14,31 @@ afterAll(() => {
 });
 
 jest.mock('../initialState', () => ({
-  NORTH: {x: 0, y: -1},
-  SOUTH: {x: 0, y: 1},
-  EAST: {x: 1, y: 0},
-  WEST: {x: -1, y: 0},
+  NORTH: { x: 0, y: -1 },
+  SOUTH: { x: 0, y: 1 },
+  EAST: { x: 1, y: 0 },
+  WEST: { x: -1, y: 0 },
   INIT_STATE: {
     cols: 5,
     rows: 2,
-    board: {width: 700, height: 500},
+    board: { width: 700, height: 500 },
     speed: 100,
-    moves: [{x: 1, y: 0}],
+    moves: [{ x: 1, y: 0 }],
     snake: [
-      {x: 4, y: 0},
-      {x: 3, y: 0},
-      {x: 2, y: 0},
-      {x: 1, y: 0}
+      { x: 4, y: 0 },
+      { x: 3, y: 0 },
+      { x: 2, y: 0 },
+      { x: 1, y: 0 },
     ],
-    apple: {x: 1, y: 0}
-  }
+    apple: { x: 1, y: 0 },
+  },
 }));
 
 test('reset game when snake hit itself', () => {
-  const {getAllByTestId} = render(<Game />);
+  const { getAllByTestId } = render(<Game />);
   fireEvent.keyDown(document, {
     key: 'w',
-    keyCode: 83
+    keyCode: 83,
   });
 
   const snakeDots = getAllByTestId('snake');
