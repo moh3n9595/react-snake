@@ -22,12 +22,10 @@ Apple.propTypes = {
     cols: PropTypes.number.isRequired,
     rows: PropTypes.number.isRequired,
     speed: PropTypes.number.isRequired,
-    apple: PropTypes.arrayOf(
-      PropTypes.shape({
-        x: PropTypes.number.isRequired,
-        y: PropTypes.number.isRequired,
-      }),
-    ).isRequired,
+    apple: PropTypes.shape({
+      x: PropTypes.number.isRequired,
+      y: PropTypes.number.isRequired,
+    }).isRequired,
     snake: PropTypes.arrayOf(
       PropTypes.shape({
         x: PropTypes.number.isRequired,

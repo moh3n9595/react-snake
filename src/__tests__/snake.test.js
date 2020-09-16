@@ -1,8 +1,8 @@
 import '@testing-library/jest-dom/extend-expect';
 import React from 'react';
-import {render, act, fireEvent} from '@testing-library/react';
+import { render, act, fireEvent } from '@testing-library/react';
 import Game from '../components/game';
-import {INIT_STATE} from '../initialState';
+import { INIT_STATE } from '../initialState';
 
 beforeAll(() => {
   jest.useFakeTimers();
@@ -16,14 +16,14 @@ const cellHeight = INIT_STATE.board.height / INIT_STATE.rows;
 const stepSpeed = 4 * INIT_STATE.speed + INIT_STATE.speed - 1;
 
 test('renders snake and food', () => {
-  const {getByTestId} = render(<Game />);
+  const { getByTestId } = render(<Game />);
 
   const snakeDot = getByTestId('snake');
   expect(snakeDot).toBeInTheDocument();
   expect(snakeDot).toHaveStyle(
     `width: ${cellWidth}px; height: ${cellHeight}px; left: ${
       INIT_STATE.snake[0].x * cellWidth
-    }px; top: ${INIT_STATE.snake[0].y * cellHeight}px`
+    }px; top: ${INIT_STATE.snake[0].y * cellHeight}px`,
   );
 
   const food = getByTestId('apple');
@@ -31,18 +31,18 @@ test('renders snake and food', () => {
   expect(food).toHaveStyle(
     `width: ${cellWidth}px; height: ${cellHeight}px; left: ${
       INIT_STATE.apple.x * cellWidth
-    }px; top: ${INIT_STATE.apple.y * cellHeight}px`
+    }px; top: ${INIT_STATE.apple.y * cellHeight}px`,
   );
 });
 
 test('snake moves in start', () => {
-  const {getByTestId} = render(<Game />);
+  const { getByTestId } = render(<Game />);
 
   const snakeDot = getByTestId('snake');
   expect(snakeDot).toHaveStyle(
     `left: ${INIT_STATE.snake[0].x * cellWidth}px; top: ${
       INIT_STATE.snake[0].y * cellHeight
-    }px`
+    }px`,
   );
 
   for (let j = 1; j <= 10; j++) {
@@ -50,13 +50,13 @@ test('snake moves in start', () => {
     expect(snakeDot).toHaveStyle(
       `left: ${(INIT_STATE.snake[0].x + j) * cellWidth}px; top: ${
         INIT_STATE.snake[0].y * cellHeight
-      }px`
+      }px`,
     );
   }
 });
 
 test('change direction', () => {
-  const {getByTestId} = render(<Game />);
+  const { getByTestId } = render(<Game />);
   const snakeDot = getByTestId('snake');
 
   // moves right on default
@@ -64,63 +64,63 @@ test('change direction', () => {
   expect(snakeDot).toHaveStyle(
     `left: ${(INIT_STATE.snake[0].x + 4) * cellWidth}px; top: ${
       INIT_STATE.snake[0].y * cellHeight
-    }px`
+    }px`,
   );
 
   // down
   fireEvent.keyDown(document, {
     key: 's',
-    keyCode: 83
+    keyCode: 83,
   });
   act(() => jest.advanceTimersByTime(stepSpeed));
   expect(snakeDot).toHaveStyle(
     `left: ${(INIT_STATE.snake[0].x + 5) * cellWidth}px; top: ${
       (INIT_STATE.snake[0].y + 4) * cellHeight
-    }px`
+    }px`,
   );
 
   // left
   fireEvent.keyDown(document, {
     key: 'a',
-    keyCode: '65'
+    keyCode: '65',
   });
   act(() => jest.advanceTimersByTime(stepSpeed));
   expect(snakeDot).toHaveStyle(
     `left: ${(INIT_STATE.snake[0].x + 1) * cellWidth}px; top: ${
       (INIT_STATE.snake[0].y + 5) * cellHeight
-    }px`
+    }px`,
   );
 
   // top
   fireEvent.keyDown(document, {
     key: 'w',
-    keyCode: 87
+    keyCode: 87,
   });
   act(() => jest.advanceTimersByTime(stepSpeed));
   expect(snakeDot).toHaveStyle(
     `left: ${INIT_STATE.snake[0].x * cellWidth}px; top: ${
       (INIT_STATE.snake[0].y + 1) * cellHeight
-    }px`
+    }px`,
   );
 
   // right again
-  fireEvent.keyDown(document, {key: 'd', keyCode: 68});
+  fireEvent.keyDown(document, { key: 'd', keyCode: 68 });
   act(() => jest.advanceTimersByTime(stepSpeed));
   expect(snakeDot).toHaveStyle(
     `left: ${(INIT_STATE.snake[0].x + 4) * cellWidth}px; top: ${
       INIT_STATE.snake[0].y * cellHeight
-    }px`
+    }px`,
   );
 });
 
 test('cant go in reverse direction', () => {
-  const {getByTestId} = render(<Game />);
+  const { getByTestId } = render(<Game />);
 
   const snakeDot = getByTestId('snake');
 
   fireEvent.keyDown(document, {
     key: 'a',
-    keyCode: '65'
+    keyCode: '65',
   });
 
   for (let j = 1; j <= 10; j++) {
@@ -128,13 +128,13 @@ test('cant go in reverse direction', () => {
     expect(snakeDot).toHaveStyle(
       `left: ${(INIT_STATE.snake[0].x + j) * cellWidth}px; top: ${
         INIT_STATE.snake[0].y * cellHeight
-      }px`
+      }px`,
     );
   }
 });
 
 test('snake grows', () => {
-  const {getAllByTestId} = render(<Game />);
+  const { getAllByTestId } = render(<Game />);
 
   expect(getAllByTestId('snake').length).toBe(1);
   act(() => jest.advanceTimersByTime(15 * INIT_STATE.speed));
@@ -145,17 +145,17 @@ test('snake grows', () => {
   expect(snakeDots[0]).toHaveStyle(
     `left: ${(INIT_STATE.snake[0].x + 15) * cellWidth}px; top: ${
       INIT_STATE.snake[0].y * cellHeight
-    }px`
+    }px`,
   );
   expect(snakeDots[1]).toHaveStyle(
     `left: ${(INIT_STATE.snake[0].x + 14) * cellWidth}px; top: ${
       INIT_STATE.snake[0].y * cellHeight
-    }px`
+    }px`,
   );
 });
 
 test('food appear in random place', () => {
-  const {getByTestId, getAllByTestId, unmount, rerender} = render(<Game />);
+  const { getByTestId, unmount, rerender } = render(<Game />);
 
   act(() => jest.advanceTimersByTime(15 * INIT_STATE.speed));
   const first_left = getByTestId('apple').style.left;
@@ -186,7 +186,7 @@ test('food appear in random place', () => {
     expect(first_top).not.toBe(second_top);
   }
 
-  const toInt = number => {
+  const toInt = (number) => {
     return parseInt(number.match(/\d+/)[0]);
   };
 
@@ -208,17 +208,17 @@ test('food appear in random place', () => {
 });
 
 test('snake can go through board', () => {
-  const {getAllByTestId} = render(<Game />);
+  const { getAllByTestId } = render(<Game />);
 
   act(() => jest.advanceTimersByTime((INIT_STATE.cols - 2) * INIT_STATE.speed));
   expect(getAllByTestId('snake')[0]).toHaveStyle(
-    `left: 0px; top: ${INIT_STATE.snake[0].y * cellHeight}px`
+    `left: 0px; top: ${INIT_STATE.snake[0].y * cellHeight}px`,
   );
 
   act(() => jest.advanceTimersByTime(2 * INIT_STATE.speed));
   expect(getAllByTestId('snake')[0]).toHaveStyle(
     `left: ${INIT_STATE.snake[0].x * cellWidth}px; top: ${
       INIT_STATE.snake[0].y * cellHeight
-    }px`
+    }px`,
   );
 });
