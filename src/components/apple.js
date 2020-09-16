@@ -22,7 +22,7 @@ Apple.propTypes = {
     cols: PropTypes.number.isRequired,
     rows: PropTypes.number.isRequired,
     speed: PropTypes.number.isRequired,
-    moves: PropTypes.arrayOf(
+    apple: PropTypes.arrayOf(
       PropTypes.shape({
         x: PropTypes.number.isRequired,
         y: PropTypes.number.isRequired,

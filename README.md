@@ -6,6 +6,13 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/moh3n9595/react-snake/blob/master/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-orange.svg)](https://github.com/moh3n9595/react-snake/compare) 
 
+<p align="center">
+    <img src="./images/snake.gif">
+    
+</p>
+
+> This repo is based on [Quera SnappFood Contest](https://quera.ir/contest/assignments/20076/problems)
+
 
 ## Give me a Star
 
