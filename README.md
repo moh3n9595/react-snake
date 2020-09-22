@@ -1,5 +1,4 @@
-<h1 align="center">React Snake</h1>
-
+## React Snake
 
 ![CI/CD](https://github.com/moh3n9595/react-snake/workflows/Continuous%20Integration/badge.svg)
 [![codecov](https://codecov.io/gh/moh3n9595/react-snake/branch/master/graph/badge.svg)](https://codecov.io/gh/moh3n9595/react-snake)
